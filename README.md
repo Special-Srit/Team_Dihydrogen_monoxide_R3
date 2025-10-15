@@ -4,8 +4,6 @@
 "At Dihydrogen Monoxide, we don't just write code - we create the fundamental building blocks that power tomorrow's digital experiences."
 
 [![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-
 
 ## How to access to it?
 
