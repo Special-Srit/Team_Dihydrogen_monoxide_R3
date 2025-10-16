@@ -1,0 +1,176 @@
+:root {
+    --bg: #0e0f1a;
+    /* 다크 네이비 */
+    --card: #151728;
+    /* 카드 배경 */
+    --accent: #ff8bbd;
+    /* 포인트 핑크 */
+    --accent-2: #ff6fb2;
+    /* 그라데이션 보조 */
+    --text: #e8e9f1;
+    /* 본문 텍스트 */
+    --muted: #a6a8be;
+    /* 보조 텍스트 */
+}
+
+html,
+body {
+    background: radial-gradient(1000px 500px at 85% 90%, rgba(255, 139, 189, 0.08), transparent),
+        radial-gradient(800px 400px at 15% 20%, rgba(255, 139, 189, 0.06), transparent),
+        var(--bg);
+    color: var(--text);
+    font-family: "Malgun Gothic", "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* 공통 유틸 */
+.text-muted-ux {
+    color: var(--muted) !important;
+}
+
+.badge-ux {
+    background: rgba(255, 139, 189, 0.18);
+    color: var(--text);
+    border: 1px solid rgba(255, 139, 189, 0.4);
+}
+
+.btn-ux {
+    background: var(--accent);
+    border: none;
+    color: #0d0e18;
+    font-weight: 700;
+}
+
+.btn-ux:hover {
+    filter: brightness(1.05);
+}
+
+.chip {
+    background: #1b1f36;
+    border: 1px solid #2a2f52;
+    color: var(--text);
+}
+
+
+
+.slogan {
+    width: 451px;
+    height: 297px;
+    left: 200px;
+    top: 225px;
+}
+
+/* 네비게이션 */
+.navbar {
+    background: rgba(13, 14, 24, 0.6);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #20233e;
+}
+
+.brand-pill {
+    background: #1c1f34;
+    border: 1px solid #2b2f52;
+    color: var(--text);
+    padding: .4rem .8rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+/* 히어로 */
+.hero {
+    padding-top: 72px;
+    padding-bottom: 40px;
+}
+
+.hero h1 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+/* 핑크 모듈러 블록 (디자인 장식) */
+.pink-block {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-radius: 26px;
+    min-height: 180px;
+}
+
+.pink-block .segment {
+    border: 3px solid rgba(255, 255, 255, 0.75);
+    border-radius: 22px;
+    min-height: 64px;
+}
+
+@media (min-width: 992px) {
+    .hero {
+        padding-bottom: 72px;
+    }
+
+    .pink-block {
+        min-height: 260px;
+    }
+}
+
+/* 특징/작업 썸네일 영역 */
+.feature-card {
+    background: #121426;
+    border: 1px solid #24284a;
+    border-radius: 20px;
+}
+
+.feature-media {
+    aspect-ratio: 16/9;
+    background: #0f1222;
+    border-radius: 16px;
+    border: 1px dashed #2a2f52;
+}
+
+/* 섹션 타이틀 */
+.section-title {
+    font-weight: 900;
+}
+
+.section-title .amp {
+    color: var(--accent);
+}
+
+/* 팀 카드 */
+.team-card {
+    background: var(--card);
+    border: 1px solid #262b4c;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.team-card .thumb {
+    aspect-ratio: 4/3;
+    background: #0f1222;
+}
+
+.team-card .name {
+    font-weight: 800;
+}
+
+/* CTA */
+.cta-wrap {
+    background: #1b1f34;
+    border: 1px solid #2b2f52;
+    border-radius: 24px;
+}
+
+.cta-inner {
+    background: var(--accent);
+    color: #0e0f1a;
+    border-radius: 18px;
+}
+
+/* 푸터 */
+footer {
+    color: var(--muted);
+    border-top: 1px solid #20233e;
+}
+
+/* 유틸: 스크롤 여백 */
+section {
+    scroll-margin-top: 72px;
+}

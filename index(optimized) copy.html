@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhjydrogen Monoxide – Team Landing</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f1a;
+      --card: #151728;
+      --accent: #ff8bbd;
+      --accent-2: #ff6fb2;
+      --text: #e8e9f1;
+      --muted: #a6a8be;
+    }
+
+    html,
+    body {
+      background: radial-gradient(1000px 500px at 85% 90%, rgba(255, 139, 189, 0.08), transparent),
+        radial-gradient(800px 400px at 15% 20%, rgba(255, 139, 189, 0.06), transparent),
+        var(--bg);
+      color: var(--text);
+      font-family: "Malgun Gothic", "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 공통 유틸 */
+    .text-muted-ux {
+      color: var(--muted) !important;
+    }
+
+    .badge-ux {
+      background: rgba(255, 139, 189, 0.18);
+      color: var(--text);
+      border: 1px solid rgba(255, 139, 189, 0.4);
+      font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+      padding: clamp(0.35rem, 1vw, 0.5rem) clamp(0.6rem, 1.5vw, 0.8rem);
+    }
+
+    .btn-ux {
+      background: var(--accent);
+      border: none;
+      color: #0d0e18;
+      font-weight: 700;
+      transition: filter 0.2s ease;
+      font-size: clamp(0.875rem, 1.8vw, 1rem);
+    }
+
+    .btn-ux:hover {
+      filter: brightness(1.05);
+      color: #0d0e18;
+    }
+
+    .chip {
+      background: #1b1f36;
+      border: 1px solid #2a2f52;
+      color: var(--text);
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* 네비게이션 */
+    .navbar {
+      background: rgba(13, 14, 24, 0.6);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #20233e;
+      padding: clamp(0.5rem, 1vw, 0.75rem) 0;
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+      outline: 1px solid var(--accent);
+      border-radius: 6px;
+    }
+
+    .brand-pill {
+      background: #1c1f34;
+      border: 1px solid #2b2f52;
+      color: var(--text);
+      padding: clamp(0.3rem, 1vw, 0.4rem) clamp(0.6rem, 1.5vw, 0.8rem);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: clamp(0.7rem, 2vw, 1rem);
+      white-space: nowrap;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: clamp(0.875rem, 1.8vw, 1rem);
+      padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 1.5vw, 0.75rem);
+    }
+
+    /* 히어로 */
+    .hero {
+      padding-top: clamp(80px, 15vw, 120px);
+      padding-bottom: clamp(2rem, 5vw, 4rem);
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .hero p {
+      font-size: clamp(0.875rem, 2vw, 1.125rem);
+      margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    /* Logo responsive sizing */
+    #logo {
+      width: 100%;
+      height: auto;
+      max-width: clamp(200px, 50vw, 500px);
+      display: block;
+      margin: 0 auto;
+    }
+
+    #github {
+      width: 100%;
+      height: auto;
+      max-width: clamp(250px, 60vw, 600px);
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Tablet adjustments (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      #logo {
+        max-width: clamp(250px, 45vw, 400px);
+      }
+
+      .hero {
+        min-height: 70vh;
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 767px) {
+      #logo {
+        max-width: clamp(150px, 40vw, 400px);
+        margin-top: 1.5rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 80px;
+      }
+
+      .hero .btn {
+        width: 100%;
+        font-size: clamp(0.875rem, 2vw, 1rem);
+      }
+    }
+
+    /* 핑크 모듈러 블록 */
+    .pink-block {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: clamp(18px, 3vw, 26px);
+      min-height: clamp(150px, 30vw, 260px);
+      width: 100%;
+    }
+
+    .pink-block .segment {
+      border: clamp(2px, 0.5vw, 3px) solid rgba(255, 255, 255, 0.75);
+      border-radius: clamp(16px, 2.5vw, 22px);
+      min-height: clamp(50px, 10vw, 64px);
+    }
+
+    /* 특징/작업 썸네일 영역 */
+    .feature-card {
+      background: #121426;
+      border: 1px solid #24284a;
+      border-radius: clamp(16px, 2.5vw, 20px);
+      height: 100%;
+    }
+
+    .feature-media {
+      aspect-ratio: 16/9;
+      background: #0f1222;
+      border-radius: clamp(12px, 2vw, 16px);
+      border: 1px dashed #2a2f52;
+    }
+
+    /* 섹션 타이틀 */
+    .section-title {
+      font-weight: 900;
+      font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    }
+
+    .section-title .amp {
+      color: var(--accent);
+    }
+
+    /* About 섹션 텍스트 */
+    #about h2 {
+      font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    }
+
+    #about p {
+      font-size: clamp(0.875rem, 2vw, 1rem);
+    }
+
+    #about .small {
+      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+
+    /* 팀 카드 */
+    .team-card {
+      background: var(--card);
+      border: 1px solid #262b4c;
+      border-radius: clamp(16px, 2.5vw, 20px);
+      overflow: hidden;
+      height: 100%;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      padding: clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .team-card .thumb {
+      aspect-ratio: 4/3;
+      background: #0f1222;
+      margin-bottom: clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .team-card .name {
+      font-weight: 800;
+      font-size: clamp(0.875rem, 2vw, 1.125rem);
+    }
+
+    .team-card .small {
+      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+
+    .team-card .btn {
+      font-size: clamp(0.7rem, 1.5vw, 0.75rem);
+      padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    /* CTA */
+    .cta-wrap {
+      background: #1b1f34;
+      border: 1px solid #2b2f52;
+      border-radius: clamp(18px, 3vw, 24px);
+      padding: clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .cta-inner {
+      background: var(--accent);
+      color: #0e0f1a;
+      border-radius: clamp(14px, 2.5vw, 18px);
+      padding: clamp(1rem, 3vw, 1.5rem);
+      gap: clamp(0.75rem, 2vw, 1rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cta-inner .fw-bold,
+    .cta-inner .h5 {
+      font-size: clamp(0.875rem, 2vw, 1.25rem);
+    }
+
+    .cta-inner .btn {
+      white-space: nowrap;
+      font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+      padding: clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    @media (max-width: 768px) {
+      .cta-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cta-inner .btn {
+        width: 100%;
+      }
+    }
+
+    /* 푸터 */
+    footer {
+      color: var(--muted);
+      border-top: 1px solid #20233e;
+      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+      padding: clamp(1.5rem, 3vw, 2rem) 0;
+    }
+
+    /* 섹션 */
+    section {
+      scroll-margin-top: 80px;
+      padding: clamp(2rem, 5vw, 4rem) 0;
+    }
+
+    .container-xxl {
+      padding: 0 clamp(0.75rem, 2vw, 1.5rem);
+      max-width: 1400px;
+    }
+
+    /* 링크 스타일 */
+    .link-light {
+      transition: color 0.2s ease;
+      font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+
+    .link-light:hover {
+      color: var(--accent) !important;
+    }
+
+    /* Grid 간격 조정 */
+    .row {
+      --bs-gutter-x: clamp(1rem, 2vw, 1.5rem);
+      --bs-gutter-y: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    /* 버튼 공통 스타일 */
+    .btn {
+      border-radius: 999px;
+      padding: clamp(0.4rem, 1vw, 0.5rem) clamp(1rem, 2.5vw, 1.5rem);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-xxl">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="brand-pill">Dhjydrogen Monoxide</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+        aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+          <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#works">Works</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#team">Team</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-ux" href="#contact">Get in touch</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container-xxl">
+      <div class="row g-4 align-items-center">
+        <div class="col-12 col-lg-6">
+          <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+            <span class="badge rounded-pill badge-ux">Team: 일산화 이수소</span>
+            <span class="badge rounded-pill badge-ux">MiniPBl R3!</span>
+          </div>
+          <h1 class="mb-3">Coding<br />& Designing<br />Things</h1>
+          <p class="text-muted-ux">UI/UX, 프론트엔드, 인터랙션을 중심으로 디지털 경험을 설계합니다.</p>
+
+          <div class="d-flex gap-2 flex-column flex-sm-row">
+            <a class="btn btn-ux" href="#works">작업 보기</a>
+            <a class="btn btn-outline-light" href="#about">자세히</a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <img id="logo" class="img-fluid" src="img/svg/logo.svg" alt="Description of image">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT / FEATURE -->
+  <section id="about">
+    <div class="container-xxl">
+      <div class="row g-4 align-items-center">
+        <div class="col-12 col-lg-6">
+          <p class="text-muted-ux small mb-1">based on element table</p>
+          <h2 class="fw-bold mb-3">Hello!, We're<br />Team: Dhjydrogen Monoxide</h2>
+          <p class="text-muted-ux">"일산화 이수소 팀에서는 단순히 코드를 작성하는 것이 아니라, 미래의 디지털 경험을 구동하는 근본적인 구성 요소를 창조합니다."</p>
+        </div>
+        <div class="col-12 col-lg-6">
+          <img class="position-relative z-2" id="github" src="img/svg/git_cur.svg" alt="Description of image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="container-xxl">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-3">
+        <h3 class="section-title m-0">담당 <span class="amp">&</span> 팀원 소개</h3>
+      </div>
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="team-card">
+            <div class="thumb w-100 rounded-3"></div>
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div>
+                <div class="name">담당자</div>
+                <div class="text-muted-ux small">Product Designer</div>
+              </div>
+              <a href="#" class="btn btn-sm btn-outline-light">Profile</a>
+            </div>
+          </article>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="team-card">
+            <div class="thumb w-100 rounded-3"></div>
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div>
+                <div class="name">정윤호</div>
+                <div class="text-muted-ux small">Frontend</div>
+              </div>
+              <a href="#" class="btn btn-sm btn-outline-light">Profile</a>
+            </div>
+          </article>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <article class="team-card">
+            <div class="thumb w-100 rounded-3"></div>
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div>
+                <div class="name">공은호</div>
+                <div class="text-muted-ux small">UI Engineer</div>
+              </div>
+              <a href="#" class="btn btn-sm btn-outline-light">Profile</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section id="contact">
+    <div class="container-xxl">
+      <div class="cta-wrap">
+        <div class="cta-inner">
+          <div class="text-center text-md-start">
+            <div class="fw-bold">Interested?</div>
+            <div class="h5 m-0">Let's Work Together</div>
+          </div>
+          <a class="btn btn-dark" href="mailto:sample.idk@gmail.com">sample.idk@gmail.com</a>
+        </div>
+      </div>
+      <div class="d-flex gap-3 mt-3 justify-content-center justify-content-md-end flex-wrap">
+        <a href="#" class="link-light link-underline-opacity-0">Twitter</a>
+        <a href="#" class="link-light link-underline-opacity-0">Dribbble</a>
+        <a href="#" class="link-light link-underline-opacity-0">Instagram</a>
+        <a href="#" class="link-light link-underline-opacity-0">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container-xxl">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <div>© 2025 Dhjydrogen Monoxide</div>
+        <div class="text-muted-ux">Made with Bootstrap • Designed by Team</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
