@@ -14,7 +14,9 @@ https://special-srit.github.io/Team_Dihydrogen_monoxide_R3
 ```
 
 ## Release History
-
+* 0.1.0
+    * RELEASE: Finished main page/form
+    * Changes: Combined Form & Page in to one.
 * 0.0.9
     * UPDATE: Finally started working on main page
 * 0.0.8
