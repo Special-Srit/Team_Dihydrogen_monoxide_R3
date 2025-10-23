@@ -28,6 +28,8 @@ function showMessage(text, type) {
     }, 5000);
 }
 
+document.getElementById('joinBtn').addEventListener('click', openApplicationForm);
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 

@@ -6,10 +6,522 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dihydrogen Monoxide – Team Landing</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/script.v0.1.1.css">
 </head>
+<style>
+  :root {
+    /* Colors */
+    --bg: #0e0f1a;
+    --card: #151728;
+    --accent: #ff8bbd;
+    --accent-hover: #ffacd0;
+    --text: #e8e9f1;
+    --muted: #a6a8be;
+    --border: #20233e;
+    --border-card: #262b4c;
+    --dark: #0d0e18;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Font Sizes */
+    --font-xs: 0.6875rem;
+    --font-sm: 0.8125rem;
+    --font-base: 0.875rem;
+    --font-md: 0.9375rem;
+    --font-lg: 1rem;
+
+    /* Radius */
+    --radius-xl: 24px;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 6px;
+    --radius-full: 999px;
+
+    /* Effects */
+    --hover-lift: -4px;
+    --transition: 0.3s ease;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 139, 189, 0.3);
+  }
+
+  /* ========================================
+BASE
+======================================== */
+  html,
+  body {
+    background: radial-gradient(1000px 500px at 85% 90%, rgba(255, 139, 189, 0.08), transparent),
+      radial-gradient(800px 400px at 15% 20%, rgba(255, 139, 189, 0.06), transparent),
+      var(--bg);
+    color: var(--text);
+    font-family: "Malgun Gothic", "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  .text-muted-ux {
+    color: var(--muted);
+  }
+
+  /* ========================================
+BADGES & BUTTONS
+======================================== */
+  .badge-ux {
+    background: rgba(255, 139, 189, 0.18);
+    color: var(--text);
+    border: 1px solid rgba(255, 139, 189, 0.4);
+    font-size: var(--font-xs);
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-md);
+    animation: scaleIn 0.5s ease-out;
+    transition: var(--transition);
+  }
+
+  .badge-ux:hover {
+    background: rgba(255, 139, 189, 0.25);
+    transform: scale(1.05);
+  }
+
+  .btn-ux {
+    background: var(--accent);
+    border: none;
+    color: var(--dark);
+    font-weight: 700;
+    transition: var(--transition);
+  }
+
+  .btn-ux:hover {
+    background: var(--accent-hover);
+    filter: brightness(1.05);
+    color: var(--dark);
+  }
+
+  .btn-ux:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ========================================
+NAVIGATION
+======================================== */
+  .navbar {
+    background: rgba(13, 14, 24, 0.6);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    padding: var(--spacing-xs) 0;
+  }
+
+  .navbar-toggler {
+    border: none;
+    padding: 0.25rem var(--spacing-xs);
+  }
+
+  .navbar-toggler:focus-visible {
+    outline: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+  }
+
+  .brand-pill {
+    background: #1c1f34;
+    border: 1px solid #2b2f52;
+    color: var(--text);
+    padding: 0.4rem var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: var(--font-sm);
+  }
+
+  /* ========================================
+HERO
+======================================== */
+  .hero {
+    padding: 100px 0 var(--spacing-xl);
+    display: flex;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-size: clamp(1.75rem, 3vw + 1rem, 4rem);
+    margin-bottom: var(--spacing-md);
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  .hero p {
+    font-size: var(--font-base);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+    animation: fadeUp 0.8s ease-out 0.2s both;
+  }
+
+  .hero img {
+    max-width: 100%;
+    height: auto;
+    margin-top: var(--spacing-lg);
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* ========================================
+TEAM CARDS
+======================================== */
+  .team-card {
+    background: var(--card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 100%;
+    transition: transform var(--transition), border-color var(--transition);
+    animation: fadeUp 0.6s ease-out both;
+  }
+
+  .team-card:hover {
+    transform: translateY(var(--hover-lift));
+    border-color: var(--accent);
+  }
+
+  .team-card .thumb {
+    aspect-ratio: 4/3;
+    background: #0f1222;
+    overflow: hidden;
+  }
+
+  .team-card .cardimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+  }
+
+  .team-card:hover .cardimg {
+    transform: scale(1.05);
+  }
+
+  .team-card .name {
+    font-weight: 800;
+    font-size: var(--font-md);
+  }
+
+  /* ========================================
+SECTIONS & CTA
+======================================== */
+  section {
+    scroll-margin-top: 80px;
+    padding: var(--spacing-xl) 0;
+  }
+
+  .section-title {
+    font-weight: 900;
+    font-size: clamp(1.25rem, 1vw + 1rem, 2rem);
+  }
+
+  .section-title .amp {
+    color: var(--accent);
+  }
+
+  .container-xxl {
+    padding: 0 0.875rem;
+  }
+
+  .cta-wrap {
+    background: #1b1f34;
+    border: 1px solid #2b2f52;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-md);
+  }
+
+  .cta-inner {
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 18px;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+
+  /* ========================================
+FOOTER
+======================================== */
+  footer {
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-size: var(--font-sm);
+    padding: var(--spacing-lg) 0;
+  }
+
+  /* ========================================
+MODAL & FORM
+======================================== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 15, 26, 0.3);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .form-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3);
+    max-width: 500px;
+    width: 95%;
+    padding: 35px;
+    position: relative;
+    animation: fadeUp 0.4s ease-out;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 139, 189, 0.2);
+    border: 1px solid var(--glass-border);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 20px;
+  }
+
+  .close-btn:hover {
+    background: rgba(255, 139, 189, 0.3);
+    transform: rotate(90deg);
+  }
+
+  .form-container h1 {
+    color: white;
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .form-container .subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 25px;
+    font-size: var(--font-sm);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: var(--font-sm);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    color: white;
+    transition: var(--transition);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 139, 189, 0.8);
+    box-shadow: 0 0 0 4px rgba(255, 139, 189, 0.15);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+  }
+
+  .required {
+    color: #ff69b4;
+  }
+
+  .form-container button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+  }
+
+  .form-container button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(255, 105, 180, 0.4);
+  }
+
+  /* ========================================
+MESSAGES
+======================================== */
+  .message {
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    font-size: var(--font-base);
+    display: none;
+  }
+
+  .message.success {
+    background: rgba(72, 187, 120, 0.2);
+    color: white;
+    border: 1px solid rgba(72, 187, 120, 0.4);
+  }
+
+  .message.error {
+    background: rgba(245, 101, 101, 0.2);
+    color: white;
+    border: 1px solid rgba(245, 101, 101, 0.4);
+  }
+
+  .message.show {
+    display: block;
+    animation: fadeUp 0.3s ease-out;
+  }
+
+  /* ========================================
+ANIMATIONS
+======================================== */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* ========================================
+ACCESSIBILITY
+======================================== */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .btn-ux {
+      border: 2px solid currentColor;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      border-width: 2px;
+    }
+  }
+
+  /* ========================================
+RESPONSIVE
+======================================== */
+  @media (min-width: 768px) {
+    .hero {
+      min-height: 60vh;
+    }
+
+    .cta-inner {
+      flex-direction: row;
+      text-align: left;
+      justify-content: space-between;
+    }
+
+    footer .d-flex {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+</style>
 
 <body>
+
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-xxl">
