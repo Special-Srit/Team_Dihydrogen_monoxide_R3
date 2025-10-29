@@ -49,7 +49,7 @@ body {
     radial-gradient(800px 400px at 15% 20%, rgba(255, 139, 189, 0.06), transparent),
     var(--bg);
   color: var(--text);
-  font-family: "Malgun Gothic", "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: "Malgun Gothic", "Noto Sans KR";
   overflow-x: hidden;
 }
 
@@ -778,7 +778,7 @@ ACCESSIBILITY
   }
 }
 
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .btn-ux {
     border: 2px solid currentColor;
   }
